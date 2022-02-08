@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
-use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
+use App\Http\Requests\BlogPostCreateRequest;
 use App\Models\BlogCategory;
 use App\Repositories\BlogCategoryRepository;
 
@@ -56,12 +56,13 @@ class CategoryController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BlogCategoryCreateRequest $request)
+    public function store(BlogPostCreateRequest $request)
     {
         $data = $request->input();
-        if (empty($data['slug'])) {
-            $data['slug'] = str_slug($data['title']);
-        }
+
+//        if (empty($data['slug'])) {
+//            $data['slug'] = str_slug($data['title']);
+//        }
 
 
         // Создаст объект и добавит в бд
@@ -126,9 +127,9 @@ class CategoryController extends BaseController
         }
 
         $data = $request->all();
-        if (empty($data['slug'])) {
-            $data['slug'] = str_slug($data['title']);
-        }
+//        if (empty($data['slug'])) {
+//            $data['slug'] = str_slug($data['title']);
+//        }
         $result = $item->update($data);
 
         if ($result) {
