@@ -111,8 +111,8 @@ class CategoryController extends BaseController
         $v['getMutatedAttributes'] = $item->getMutatedAttributes();
         $v['hasGetMutator for title'] = $item->hasGetMutator('title');
         $v['toArray'] = $item->toArray();
-
         dd($v, $item);
+
         if (empty($item)) {
             abort(404);
         }
