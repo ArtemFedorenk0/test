@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\BlogPost;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class BlogPostObserver
 {
@@ -50,14 +51,14 @@ class BlogPostObserver
 
     protected function setPublishedAt(BlogPost $blogPost){
         if (empty($blogPost->published_at) && $blogPost->is_published) {
-            $blogPost->is_published = Carbon::now();
+            $blogPost->published_at = Carbon::now();
         }
     }
 
     protected function setSlug(BlogPost $blogPost)
     {
         if (empty($blogPost->slug)) {
-            $blogPost->slug = \Str::slug($blogPost->title);
+            $blogPost->slug = Str::slug($blogPost->title);
         }
     }
     /**

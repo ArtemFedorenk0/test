@@ -96,6 +96,7 @@ class PostController extends BaseController
     public function edit($id)
     {
         $item = $this->blogPostRepository->getEdit($id);
+
         if (empty($item)) {
             abort(404);
         }
