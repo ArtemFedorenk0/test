@@ -20,6 +20,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'digging_deeper'], function () {
     Route::get('collections', 'DiggingDeeperController@collections')
         ->name('digging_deeper.collections');
+    Route::get('process-video', 'DiggingDeeperController@collections')
+        ->name('digging_deeper.processVideo');
+    Route::get('prepare-catalog', 'DiggingDeeperController@prepareCatalog')
+        ->name('digging_deeper.prepareCatalog');
 });
 
 Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function (){
@@ -38,7 +42,6 @@ Route::group($groupData, function () {
     Route::resource('posts', 'PostController')
         ->except(['show'])
         ->names('blog.admin.posts');
-
 });
 
 //Route::resource('rest', 'RestTestController')->names('restTest');

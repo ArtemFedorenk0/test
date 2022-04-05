@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\GenerateCatalog\GenerateCatalogMainJob;
 use App\Models\BlogPost;
 use Carbon\Carbon;
 
@@ -117,5 +118,10 @@ class DiggingDeeperController extends Controller
         $sortedDescCollection = $collection->sortByDesc('item_id');
 
         dd(compact('sortedSimpleCollection', 'sortedAscCollection', 'sortedDescCollection'));
+    }
+
+    public function prepareCatalog()
+    {
+        GenerateCatalogMainJob::dispatch();
     }
 }

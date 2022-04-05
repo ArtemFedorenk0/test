@@ -66,12 +66,13 @@ class PostController extends BaseController
     public function store(BlogPostCreateRequest $request)
     {
         $data = $request->input();
-        $item = (new BlogPost())->create($data);
 
+        $item = (new BlogPost())->create($data);
         if ($item) {
 
             $job = new BlogPostAfterCreateJob($item);
-            $this->dispatch($job);
+            $rest = $this->dispatch($job);
+            dd($job, $rest);
 
             return redirect()->route('blog.admin.posts.edit', [$item->id])
                 ->with(['success' => 'Успешно сохранено']);
